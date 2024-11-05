@@ -9,8 +9,12 @@ namespace ExemplePOO
         public int NbPieces;
         public bool Jardin;
 
-        public Maison()
+        public Maison(string adresse, float superficie, int nbPieces, bool jardin)
         {
+            Adresse = adresse;
+            Superficie = superficie;
+            NbPieces = nbPieces;
+            Jardin = jardin;
         }
     }
     public class Program
