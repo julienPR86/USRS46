@@ -15,9 +15,14 @@ namespace ExemplePOO
     }
     public class Program
     {
-        public static void Main()
+        static void Main(string[] args)
         {
-            Console.WriteLine("test");
+            Maison UneMaison = new Maison();
+
+            Console.WriteLine("Adresse = {0}", UneMaison.Adresse);
+            Console.WriteLine("Superficie = {0}", UneMaison.Superficie);
+            Console.WriteLine("Nombre de pièces = {0}", UneMaison.NbPieces);
+            Console.WriteLine("Présence d'un jardin = {0}", UneMaison.Jardin);
         }
     }
 }
