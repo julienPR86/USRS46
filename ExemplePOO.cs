@@ -45,14 +45,14 @@ namespace ExemplePOO
         private string adresse;
         private float superficie;
         private int NbCotesClotures;
-        private int CoutFinirCloture;
+        private bool riviere;
 
-        public Terrain(string adresse, float superficie, int NbCotesClotures, int CoutFinirCloture)
+        public Terrain(string adresse, float superficie, int NbCotesClotures, bool riviere)
         {
             this.adresse = adresse;
             this.superficie = superficie;
             this.NbCotesClotures = NbCotesClotures;
-            this.CoutFinirCloture = CoutFinirCloture;
+            this.riviere = riviere;
         }
         public override string ToString()
         {
@@ -64,15 +64,15 @@ namespace ExemplePOO
         public float EvaluationValeur()
         {
             int facteur = 1500;
-            if (NbCotesClotures > 3){facteur += 500;}
+            if (riviere){facteur += 2000;}
             if (Regex.IsMatch(this.adresse, @"\bParis\b")) { facteur += 9000; }
             else if (Regex.IsMatch(this.adresse, @"\bLyon\b")) { facteur += 3000; }
 
-            return (this.superficie-CoutFinirCloture) * facteur ;
+            return this.superficie * (facteur-CoutFinirCloture()) ;
         }
-        public int CoutFinitCloture()
+        public int CoutFinirCloture()
         {
-            return 0;
+            return NbCotesClotures*100;
         }
     }
     public class Program
@@ -83,9 +83,9 @@ namespace ExemplePOO
             Maison UneAutreMaison = new Maison("4 place Saint Louis, 22100 Dinan",86.5f,5,true);
             Maison UneDerniereMaison = new Maison("26 Boulevard Claude Lorrin, 40100 Dax",25.2f,2,false);
 
-            Terrain UnTerrain = new Terrain("15 Rue des Chartreux, 69001 Lyon", 124f, 4, 0);
-            Terrain UnAutreTerrain = new Terrain("8 place Saint Louis, 22100 Dinan", 49f, 48, 2);
-            Terrain UnDernierTerrain = new Terrain("30 Boulevard Claude Lorrin, 40100 Dax", 256f, 21, 4);
+            Terrain UnTerrain = new Terrain("15 Rue des Chartreux, 69001 Lyon", 124f, 4, false);
+            Terrain UnAutreTerrain = new Terrain("8 place Saint Louis, 22100 Dinan", 49f, 14, true);
+            Terrain UnDernierTerrain = new Terrain("30 Boulevard Claude Lorrin, 40100 Dax", 256f, 7, false);
 
             Maison[] CatalogueMaisons = new Maison[] {UneMaison, UneAutreMaison, UneDerniereMaison};
             Terrain[] CatalogueTerrains = new Terrain[] {UnTerrain, UnAutreTerrain, UnDernierTerrain};
