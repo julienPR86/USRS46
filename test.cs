@@ -2,8 +2,11 @@ using System;
 
 namespace ExemplePOO
 {
-    public static void Main()
+    public class Program
     {
-        
+        public static void Main()
+        {
+            Console.WriteLine("test");
+        }
     }
 }
