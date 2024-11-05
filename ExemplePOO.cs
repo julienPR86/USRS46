@@ -63,7 +63,12 @@ namespace ExemplePOO
         }
         public float EvaluationValeur()
         {
-            return 0;
+            int facteur = 1500;
+            if (NbCotesClotures > 3){facteur += 500;}
+            if (Regex.IsMatch(this.adresse, @"\bParis\b")) { facteur += 9000; }
+            else if (Regex.IsMatch(this.adresse, @"\bLyon\b")) { facteur += 3000; }
+
+            return (this.superficie-CoutFinirCloture) * facteur ;
         }
         public int CoutFinitCloture()
         {
