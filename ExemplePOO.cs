@@ -60,39 +60,37 @@ namespace ExemplePOO
         return this.Superficie * facteur ;
         }
     }
-    public class Terrain
+    public class Terrain : Bien
     {
-        private string adresse;
-        private float superficie;
-        private int NbCotesClotures;
-        private bool riviere;
+        public int NbCotesClotures;
+        public bool Riviere;
 
-        public Terrain(string adresse, float superficie, int NbCotesClotures, bool riviere)
+        public Terrain(string adresse, float superficie, int nbCotesClotures, bool riviere) : base(adresse,superficie)
         {
-            this.adresse = adresse;
-            this.superficie = superficie;
-            this.NbCotesClotures = NbCotesClotures;
-            this.riviere = riviere;
+        NbCotesClotures = nbCotesClotures;
+        Riviere = riviere;
         }
+
         public override string ToString()
         {
-            string toString = String.Format("Adresse = {0}\n", this.adresse);
-            toString += String.Format("Superficie = {0}m²\n", this.superficie);
-            toString += String.Format("> VALEUR = {0}$", this.EvaluationValeur());
-            return toString;
+        string toString = String.Format("Nombre de cotés clorutés = {0}\n", this.NbCotesClotures);
+        toString += String.Format("Présence d'une rivière = {0}\n", this.Riviere ? "Oui" : "Non");
+        toString += String.Format("> VALEUR = {0}$\n", this.EvaluationValeur());
+        return toString;
         }
-        public float EvaluationValeur()
-        {
-            int facteur = 1500;
-            if (riviere){facteur += 2000;}
-            if (Regex.IsMatch(this.adresse, @"\bParis\b")) { facteur += 9000; }
-            else if (Regex.IsMatch(this.adresse, @"\bLyon\b")) { facteur += 3000; }
 
-            return this.superficie * (facteur-CoutFinirCloture()) ;
-        }
-        public int CoutFinirCloture()
+        public new float EvaluationValeur()
         {
-            return NbCotesClotures*100;
+        int facteur = 3000;
+
+        if (this.Riviere) { facteur += 600; }
+
+        facteur += 100 * this.NbCotesClotures; 
+
+        if (Regex.IsMatch(this.Adresse, @"\bParis\b")) { facteur += 7000; }
+        else if (Regex.IsMatch(this.Adresse, @"\bLyon\b")) { facteur += 2000; }
+
+        return this.Superficie * facteur ;
         }
     }
     public class Program
