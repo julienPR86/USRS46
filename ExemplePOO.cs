@@ -101,20 +101,14 @@ namespace ExemplePOO
             Maison UneAutreMaison = new Maison("4 place Saint Louis, 22100 Dinan",86.5f,5,true);
             Maison UneDerniereMaison = new Maison("26 Boulevard Claude Lorrin, 40100 Dax",25.2f,2,false);
 
-            Terrain UnTerrain = new Terrain("15 Rue des Chartreux, 69001 Lyon", 124f, 4, false);
-            Terrain UnAutreTerrain = new Terrain("8 place Saint Louis, 22100 Dinan", 49f, 14, true);
-            Terrain UnDernierTerrain = new Terrain("30 Boulevard Claude Lorrin, 40100 Dax", 256f, 7, false);
+            Terrain UnTerrain = new Terrain("55 route cabossée, 29130 Locmaria-Plouzané",5000f,2,true);
+            Terrain UnAutreTerrain = new Terrain("102 route des volcans, 63000 Clermont-Ferrand",1500f,4,false);
 
-            Maison[] CatalogueMaisons = new Maison[] {UneMaison, UneAutreMaison, UneDerniereMaison};
-            Terrain[] CatalogueTerrains = new Terrain[] {UnTerrain, UnAutreTerrain, UnDernierTerrain};
+            Bien[] CatalogueBiens = new Bien[] {UneMaison, UneAutreMaison, UneDerniereMaison, UnTerrain, UnAutreTerrain};
 
-            foreach(Maison M in CatalogueMaisons)
+            foreach(Bien B in CatalogueBiens)
             {
-                Console.WriteLine(M+"\n");
-            }
-            foreach(Terrain T in CatalogueTerrains)
-            {
-                Console.WriteLine(T+"\n");
+                Console.WriteLine(B);
             }
         }
     }
